@@ -26,7 +26,7 @@ public class ItemSlimophone extends Item {
 	private static Map<Entity, SlimeData> slimeData = new WeakHashMap<Entity, SlimeData>();
 
 	public ItemSlimophone(int id) {
-		super(id);
+		super();
 		setMaxStackSize(1);
 		setMaxDamage(maxBatteryCharge);
 		//setIconIndex(22);

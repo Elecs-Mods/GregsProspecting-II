@@ -1,8 +1,8 @@
 package elec332.gregsprospecting2.items;
 
-import elec332.gregsprospecting2.main.GregsProspecting;
 import elec332.gregsprospecting2.lib.MiningRadarAction;
 import elec332.gregsprospecting2.lib.SignalMode;
+import elec332.gregsprospecting2.init.ItemRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,8 +15,8 @@ public class ItemMiningRadar extends Item {
 	public static float hitBreakChance = 0.05F;
 	public static int maxBatteryCharge = 18000;
 	
-	public ItemMiningRadar(int id) {
-		super(id);
+	public ItemMiningRadar() {
+		super();
 		setMaxStackSize(1);
 		//setMaxDamage(maxBatteryCharge);
 		//setIconIndex(index);
@@ -106,17 +106,18 @@ public class ItemMiningRadar extends Item {
 			setRange(stack, range - 5);
 	}
 	
-	private void makeBroken(ItemStack stack) {
-		stack.itemID = GregsProspecting.brokenMiningRadar.itemID;
+	/*private void makeBroken(ItemStack stack) {
+		stack.set = ;
 		stack.setTagCompound(null);
-	}
+	}*/
 
 	@Override
 	public boolean onBlockStartBreak(ItemStack stack, int x, int y, int z, EntityPlayer player) {
 		World world = player.worldObj;
 		if (world.rand.nextFloat() < hitBreakChance) {
 			world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.glass", 2.0F, world.rand.nextFloat() * 0.1F + 0.9F);
-			makeBroken(stack);
+			stack = null;
+			stack = new ItemStack(ItemRegister.brokenMiningRadar);
 		}
 		return false;
 	}
@@ -136,7 +137,7 @@ public class ItemMiningRadar extends Item {
 	}
 	
 	public boolean isColor(ItemStack stack) {
-		return stack.getItem() == GregsProspecting.colorMiningRadar;
+		return stack.getItem() == ItemRegister.colorMiningRadar;
 	}
 
 }

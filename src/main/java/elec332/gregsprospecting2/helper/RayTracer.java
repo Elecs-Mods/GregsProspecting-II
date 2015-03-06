@@ -4,6 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import elec332.gregsprospecting2.lib.SignalMode;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 public class RayTracer {
@@ -17,10 +18,10 @@ public class RayTracer {
 	private static float reflectance[]; // block ID --> reflected signal
 	
 	static {
-		reflectance = new float[Block.blocksList.length];
+		/*reflectance = new float[Blocks.blocksList.length];
 		World world = FMLClientHandler.instance().getClient().theWorld;
-		float default_reflectance = Block.stone.getBlockHardness(world, 0,0,0);
-		for (Block block : Block.blocksList) {
+		float default_reflectance = Blocks.stone.getBlockHardness(world, 0,0,0);
+		for (Block block : Blocks.blocksList) {
 			if (block != null) {
 				try {
 					reflectance[block.blockID] = block.getBlockHardness(world, 0,0,0);
@@ -65,7 +66,7 @@ public class RayTracer {
 		reflectance[Block.blockIron.blockID] = 3.0F;
 		reflectance[Block.blockGold.blockID] = 3.5F;
 		reflectance[Block.blockLapis.blockID] = 4.0F;
-		reflectance[Block.blockDiamond.blockID] = 4.5F;
+		reflectance[Block.blockDiamond.blockID] = 4.5F;*/
 	}
 	
 	public RayTracer(EntityPlayer player, int range, SignalMode signalMode) {
@@ -84,8 +85,8 @@ public class RayTracer {
 		for (int ix = - range; ix <= range; ix++) {
 			for (int iy = - range; iy <= range; iy++) {
 				for (int iz = - range; iz <= range; iz++) {
-					int blockId = world.getBlockId(ipx + ix, ipy + iy, ipz + iz);
-					density[range + ix][range + iy][range + iz] = reflectance[blockId];
+					Block blockId = world.getBlock(ipx + ix, ipy + iy, ipz + iz);
+					density[range + ix][range + iy][range + iz] = blockId.getBlockHardness(world, ipx + ix, ipy + iy, ipz + iz);
 				}
 			}
 		}

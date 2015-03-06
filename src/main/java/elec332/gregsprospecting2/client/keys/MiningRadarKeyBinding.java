@@ -8,7 +8,7 @@ public class MiningRadarKeyBinding extends KeyBinding {
 	public MiningRadarAction action;
 
 	public MiningRadarKeyBinding(String name, int value, MiningRadarAction action) {
-		super(name, value);
+		super(name, value, null);
 		this.action = action;
 	}
 

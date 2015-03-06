@@ -13,6 +13,7 @@ import elec332.core.helper.FileHelper;
 import elec332.core.helper.MCModInfo;
 import elec332.core.modBaseUtils.ModBase;
 import elec332.core.modBaseUtils.modInfo;
+import elec332.gregsprospecting2.init.RecipeRegister;
 import elec332.gregsprospecting2.proxies.CommonProxy;
 
 import java.io.File;
@@ -54,6 +55,7 @@ public class GregsProspectingII extends ModBase {
         loadConfiguration();
         ItemRegister.instance.init(event);
         BlockRegister.instance.init(event);
+        RecipeRegister.instance.init(event);
         //register items/blocks
 
         notifyEvent(event);

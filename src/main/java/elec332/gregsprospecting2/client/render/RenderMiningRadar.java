@@ -2,8 +2,9 @@ package elec332.gregsprospecting2.client.render;
 
 import elec332.gregsprospecting2.helper.RayTracer;
 import elec332.gregsprospecting2.helper.CoordRotator;
+import elec332.gregsprospecting2.init.ItemRegister;
 import elec332.gregsprospecting2.items.ItemMiningRadar;
-import elec332.gregsprospecting2.main.GregsProspecting;
+import net.minecraft.util.IIcon;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -13,7 +14,6 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 import net.minecraftforge.client.IItemRenderer;
 
 public class RenderMiningRadar extends Rendering implements IItemRenderer {
@@ -72,7 +72,7 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 		RenderItem ri = new RenderItem();
 		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 		GL11.glDisable(GL11.GL_LIGHTING);
-		Icon icon = stack.getIconIndex();
+		IIcon icon = stack.getIconIndex();
 		//ri.renderTexturedQuad(0, 0, icon % 16 * 16, icon / 16 * 16, 16, 16);
 		ri.renderIcon(0, 0, icon, 16, 16);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -119,7 +119,7 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 		GL11.glTranslated(-1.5, 0.7, 0.5);
 		Tessellator tess = Tessellator.instance;
 		int pass = 0;
-		Icon icon = player.getItemIcon(stack, pass);
+		IIcon icon = player.getItemIcon(stack, pass);
 		float u0 = icon.getMinU();
 		float v0 = icon.getMinV();
 		float u1 = icon.getMaxU();
@@ -241,7 +241,7 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 	}
 
 	void drawIndicators(ItemStack stack) {
-		ItemMiningRadar mr = GregsProspecting.miningRadar;
+		ItemMiningRadar mr = ItemRegister.miningRadar;
 		bindTextureSet("mining_radar_indicators.png", 83, 9);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		int b = 36; // Base of indicator area
@@ -295,7 +295,7 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 	}
 
 	boolean isBroken(ItemStack stack) {
-		return stack.itemID == GregsProspecting.brokenMiningRadar.itemID;
+		return stack.getItem() == ItemRegister.brokenMiningRadar;
 	}
 	
 	void glColor3fv(float[] c) {

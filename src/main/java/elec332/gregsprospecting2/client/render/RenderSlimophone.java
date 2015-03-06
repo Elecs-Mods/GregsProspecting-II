@@ -1,11 +1,11 @@
 package elec332.gregsprospecting2.client.render;
 
 import elec332.gregsprospecting2.items.ItemSlimophone;
+import net.minecraft.util.IIcon;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 import net.minecraftforge.client.IItemRenderer;
 
 public class RenderSlimophone extends Rendering implements IItemRenderer {
@@ -33,8 +33,7 @@ public class RenderSlimophone extends Rendering implements IItemRenderer {
 		RenderItem ri = new RenderItem();
 		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 		GL11.glDisable(GL11.GL_LIGHTING);
-		Icon icon = stack.getIconIndex();
-//		ri.renderIcon(0, 0, icon % 16 * 16, icon / 16 * 16, 16, 16);
+		IIcon icon = stack.getIconIndex();
 		ri.renderIcon(0, 0, icon, 16, 16);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
