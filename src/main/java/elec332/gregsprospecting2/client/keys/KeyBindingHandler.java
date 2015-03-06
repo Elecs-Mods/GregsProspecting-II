@@ -7,9 +7,7 @@ import elec332.gregsprospecting2.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.client.settings.KeyBinding;
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.common.TickType;
 
 public class KeyBindingHandler extends KeyHandler {
 
