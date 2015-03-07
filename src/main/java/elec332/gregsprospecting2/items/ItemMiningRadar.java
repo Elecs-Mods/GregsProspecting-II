@@ -1,8 +1,8 @@
 package elec332.gregsprospecting2.items;
 
+import elec332.gregsprospecting2.init.ItemRegister;
 import elec332.gregsprospecting2.lib.MiningRadarAction;
 import elec332.gregsprospecting2.lib.SignalMode;
-import elec332.gregsprospecting2.init.ItemRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

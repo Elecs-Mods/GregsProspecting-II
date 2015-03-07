@@ -1,14 +1,15 @@
 package elec332.gregsprospecting2.items;
 
-import java.util.Map;
-import java.util.WeakHashMap;
-
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.item.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import java.util.Map;
+import java.util.WeakHashMap;
 
 public class ItemSlimophone extends Item {
 

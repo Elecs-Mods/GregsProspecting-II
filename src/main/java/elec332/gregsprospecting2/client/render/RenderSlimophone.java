@@ -1,12 +1,11 @@
 package elec332.gregsprospecting2.client.render;
 
 import elec332.gregsprospecting2.items.ItemSlimophone;
-import net.minecraft.util.IIcon;
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class RenderSlimophone extends Rendering implements IItemRenderer {
 

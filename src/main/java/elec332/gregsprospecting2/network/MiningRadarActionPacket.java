@@ -8,8 +8,6 @@ import elec332.gregsprospecting2.lib.MiningRadarAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
-
 /**
  * Created by Elec332 on 6-3-2015.
  */

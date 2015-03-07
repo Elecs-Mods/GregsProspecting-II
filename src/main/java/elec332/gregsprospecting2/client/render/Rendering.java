@@ -1,12 +1,13 @@
 package elec332.gregsprospecting2.client.render;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import elec332.gregsprospecting2.main.GregsProspectingII;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import net.minecraft.client.Minecraft;
+
 //import net.minecraft.client.renderer.RenderEngine;
-import net.minecraft.client.renderer.Tessellator;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class Rendering {
 

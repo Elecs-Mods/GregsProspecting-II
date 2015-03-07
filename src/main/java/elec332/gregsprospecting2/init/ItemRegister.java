@@ -10,7 +10,6 @@ import elec332.core.util.items.baseItem;
 import elec332.gregsprospecting2.items.ItemMiningRadar;
 import elec332.gregsprospecting2.items.ItemSlimophone;
 import elec332.gregsprospecting2.main.GregsProspectingII;
-import li.cil.repack.org.luaj.vm2.ast.Str;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

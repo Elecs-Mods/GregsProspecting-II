@@ -1,20 +1,19 @@
 package elec332.gregsprospecting2.client.render;
 
-import elec332.gregsprospecting2.helper.RayTracer;
 import elec332.gregsprospecting2.helper.CoordRotator;
+import elec332.gregsprospecting2.helper.RayTracer;
 import elec332.gregsprospecting2.init.ItemRegister;
 import elec332.gregsprospecting2.items.ItemMiningRadar;
-import net.minecraft.util.IIcon;
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class RenderMiningRadar extends Rendering implements IItemRenderer {
 

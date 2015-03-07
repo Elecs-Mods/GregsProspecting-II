@@ -1,10 +1,8 @@
 package elec332.gregsprospecting2.helper;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import elec332.gregsprospecting2.lib.SignalMode;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 public class RayTracer {
