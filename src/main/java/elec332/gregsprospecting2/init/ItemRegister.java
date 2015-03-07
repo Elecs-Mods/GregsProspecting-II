@@ -2,11 +2,15 @@ package elec332.gregsprospecting2.init;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import elec332.core.helper.ModInfoHelper;
 import elec332.core.util.items.baseItem;
 import elec332.gregsprospecting2.items.ItemMiningRadar;
+import elec332.gregsprospecting2.items.ItemSlimophone;
+import elec332.gregsprospecting2.main.GregsProspectingII;
+import li.cil.repack.org.luaj.vm2.ast.Str;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -30,7 +34,7 @@ public class ItemRegister {
     }
 
     public void init(FMLInitializationEvent event){
-        //miningRadar = new baseItem("miningRadar", ItemMiningRadar.class, "Mining Radar");
+        miningRadar = itemMiningRadar("miningRadar", ItemMiningRadar.class, "Mining Radar");
         battery = createItem("battery", "Battery");
         mandrel = createItem("mandrel", "Wooden Mandrel");
         mandrel.setContainerItem(mandrel);
@@ -54,13 +58,23 @@ public class ItemRegister {
         bluePhosphor = createItem("bluePhosphor", "Blue Phosphor");
         parabolicMicrophone = createItem("parabolicMicrophone", "Parabolic Microphone");
         colorMiningRadarCircuit = createItem("colorMiningRadarCircuit", "Colour Mining Radar Circuit");
-        //brokenMiningRadar = new Item("brokenMiningRadar", ItemMiningRadar.class, "Broken Mining Radar");
-        //slimophone = new Item("slimophone", ItemSlimophone.class, "Slimophone");
-        //colorMiningRadar = new Item("colorMiningRadar", ItemMiningRadar.class, "Colour Mining Radar");
+        brokenMiningRadar = itemMiningRadar("brokenMiningRadar", ItemMiningRadar.class, "Broken Mining Radar");
+        slimophone = new ItemSlimophone(0).setUnlocalizedName(GregsProspectingII.ModID + ":slimophone").setTextureName(GregsProspectingII.ModID + ":slimophone").setCreativeTab(Tab);
+        GameRegistry.registerItem(slimophone, "slimophone");
+        //itemMiningRadar("slimophone", ItemSlimophone.class, "Slimophone");
+        colorMiningRadar = itemMiningRadar("colorMiningRadar", ItemMiningRadar.class, "Colour Mining Radar");
     }
 
     Item createItem(String s, String toLocalise){
         return new baseItem(s, Tab, ModID);
+    }
+
+    ItemMiningRadar itemMiningRadar(String s, Class clazz, String tl){
+        String fn = GregsProspectingII.ModID + ":" + s;
+        ItemMiningRadar imr = new ItemMiningRadar();
+        imr.setUnlocalizedName(fn).setTextureName(fn).setCreativeTab(Tab);
+        GameRegistry.registerItem(imr, tl);
+        return imr;
     }
 
     public static CreativeTabs Tab = new CreativeTabs("GregsProspecting2") {

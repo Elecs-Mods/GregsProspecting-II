@@ -1,6 +1,7 @@
 package elec332.gregsprospecting2.client.render;
 
-import elec332.gregsprospecting2.main.GregsProspecting;
+import elec332.gregsprospecting2.main.GregsProspectingII;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 //import net.minecraft.client.renderer.RenderEngine;
@@ -14,15 +15,15 @@ public class Rendering {
 	double boundTextureWidth, boundTextureHeight;
 	
 	public Rendering() {
-		mc = FMLClientHandler.instance().getClient().getMinecraft();
+		mc = Minecraft.getMinecraft();
 		//System.out.printf("Rendering: GregsProspecting.instance = %s, client = %s\n",
 		//	GregsProspecting.instance, GregsProspecting.instance.client);
 		//client = GregsProspecting.instance.client;
 	}
 
   void bindTexture(String name) {
-		//mc.renderEngine.bindTexture(name);
-		GregsProspecting.instance.client.bindTexture("other/" + name);
+	  ResourceLocation test = new ResourceLocation(GregsProspectingII.ModID + ":other/");
+	  FMLClientHandler.instance().getClient().renderEngine.bindTexture(test);
 	}
 
 	void drawRect(double x, double y, double w, double h) {

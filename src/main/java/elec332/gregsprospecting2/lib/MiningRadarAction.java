@@ -5,5 +5,4 @@ public enum MiningRadarAction {
 	DecreaseRange,
 	SelectLinearMode,
 	SelectDiscriminationMode
-//	SwitchMode
 }

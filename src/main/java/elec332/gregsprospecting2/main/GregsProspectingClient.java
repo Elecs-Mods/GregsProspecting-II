@@ -6,18 +6,9 @@
 
 package elec332.gregsprospecting2.main;
 
-import elec332.gregsprospecting2.client.keys.KeyBindingHandler;
-import elec332.gregsprospecting2.client.keys.KeyBindingList;
-import elec332.gregsprospecting2.client.keys.MiningRadarKeyBinding;
-import elec332.gregsprospecting2.client.render.RenderMiningRadar;
-import elec332.gregsprospecting2.client.render.RenderSlimophone;
-import elec332.gregsprospecting2.lib.MiningRadarAction;
-import org.lwjgl.input.Keyboard;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
-import net.minecraftforge.client.IItemRenderer;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
-public class GregsProspectingClient extends BaseModClient {
+
+public class GregsProspectingClient{}/* extends BaseModClient {
 
 	public GregsProspectingClient(BaseMod mod) {
 		super(mod);
@@ -54,4 +45,4 @@ public class GregsProspectingClient extends BaseModClient {
 		LanguageRegistry.instance().addStringLocalization(bindingName, title);
 	}
 
-}
+}*/

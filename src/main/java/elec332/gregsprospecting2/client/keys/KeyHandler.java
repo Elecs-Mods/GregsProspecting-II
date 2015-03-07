@@ -1,6 +1,9 @@
 package elec332.gregsprospecting2.client.keys;
 
 import elec332.core.client.KeyHandlerBase;
+import elec332.gregsprospecting2.lib.MiningRadarAction;
+import elec332.gregsprospecting2.main.GregsProspectingII;
+import elec332.gregsprospecting2.network.MiningRadarActionPacket;
 import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Keyboard;
 
@@ -11,16 +14,25 @@ import org.lwjgl.input.Keyboard;
 public class KeyHandler extends KeyHandlerBase{
     public static KeyHandler instance = new KeyHandler();
 
-    public KeyBinding key1 = new KeyBinding("SwitchMode??", Keyboard.KEY_B, "key.categories.gregsprospecting");
+    public KeyBinding key1 = makeKeyBinding("IncreaseRange", Keyboard.KEY_B);
+    public KeyBinding key2 = makeKeyBinding("DecreaseRange", Keyboard.KEY_N);
+    public KeyBinding key3 = makeKeyBinding("SelectLinearMode", Keyboard.KEY_V);
+    public KeyBinding key4 = makeKeyBinding("SelectDiscriminationMode", Keyboard.KEY_C);
 
     public void registerKeys(){
         KHB.registerKeyBinding(key1);
+        KHB.registerKeyBinding(key2);
+        KHB.registerKeyBinding(key3);
+        KHB.registerKeyBinding(key4);
     }
 
     @Override
     public void performAction(KeyBinding key) {
-        if (key == key1){
-            //do stuff
-        }
+        if (MiningRadarAction.valueOf(key.getKeyDescription()) != null)
+            GregsProspectingII.networkHandler.getNetworkWrapper().sendToServer(new MiningRadarActionPacket(MiningRadarAction.valueOf(key.getKeyDescription())));
+    }
+
+    public KeyBinding makeKeyBinding(String name, int kb){
+        return new KeyBinding(name, kb, "key.categories.gregsprospecting");
     }
 }

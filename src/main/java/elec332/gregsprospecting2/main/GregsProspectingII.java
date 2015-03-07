@@ -6,6 +6,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import elec332.core.helper.ModInfoHelper;
+import elec332.core.network.NetworkHandler;
 import elec332.gregsprospecting2.init.BlockRegister;
 import elec332.gregsprospecting2.init.CommandRegister;
 import elec332.gregsprospecting2.init.ItemRegister;
@@ -14,6 +16,7 @@ import elec332.core.helper.MCModInfo;
 import elec332.core.modBaseUtils.ModBase;
 import elec332.core.modBaseUtils.modInfo;
 import elec332.gregsprospecting2.init.RecipeRegister;
+import elec332.gregsprospecting2.network.MiningRadarActionPacket;
 import elec332.gregsprospecting2.proxies.CommonProxy;
 
 import java.io.File;
@@ -33,10 +36,13 @@ public class GregsProspectingII extends ModBase {
 
     @Mod.Instance(ModID)
     public static GregsProspectingII instance;
+    public static NetworkHandler networkHandler;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         this.cfg = FileHelper.getConfigFileElec(event);
+        networkHandler = new NetworkHandler(ModInfoHelper.getModID(event));
+        networkHandler.registerServerPacket(MiningRadarActionPacket.class);
         loadConfiguration();
         ItemRegister.instance.preInit(event);
         BlockRegister.instance.preInit(event);
