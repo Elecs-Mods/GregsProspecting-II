@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * Created by Elec332 on 24-2-2015.
  */
-@Mod(modid = GregsProspectingII.ModName, name = GregsProspectingII.ModID, dependencies = modInfo.DEPENDENCIES+"@[#ELECCORE_VER#,)",
+@Mod(modid = GregsProspectingII.ModID, name = GregsProspectingII.ModName, dependencies = modInfo.DEPENDENCIES+"@[#ELECCORE_VER#,)",
         acceptedMinecraftVersions = modInfo.ACCEPTEDMCVERSIONS, useMetadata = true, canBeDeactivated = true)
 public class GregsProspectingII extends ModBase {
 
