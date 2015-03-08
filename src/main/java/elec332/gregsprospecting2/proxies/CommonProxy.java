@@ -5,7 +5,9 @@ package elec332.gregsprospecting2.proxies;
  */
 public class CommonProxy {
 
-
     public void registerKeyBindings(){
+    }
+
+    public void registerRenderer(){
     }
 }

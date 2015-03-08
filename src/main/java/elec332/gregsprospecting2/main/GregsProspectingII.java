@@ -63,6 +63,7 @@ public class GregsProspectingII extends ModBase {
         BlockRegister.instance.init(event);
         RecipeRegister.instance.init(event);
         proxy.registerKeyBindings();
+        proxy.registerRenderer();
         //register items/blocks
 
         notifyEvent(event);

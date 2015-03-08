@@ -14,10 +14,10 @@ import org.lwjgl.input.Keyboard;
 public class KeyHandler extends KeyHandlerBase{
     public static KeyHandler instance = new KeyHandler();
 
-    public KeyBinding key1 = makeKeyBinding("IncreaseRange", Keyboard.KEY_B);
-    public KeyBinding key2 = makeKeyBinding("DecreaseRange", Keyboard.KEY_N);
-    public KeyBinding key3 = makeKeyBinding("SelectLinearMode", Keyboard.KEY_V);
-    public KeyBinding key4 = makeKeyBinding("SelectDiscriminationMode", Keyboard.KEY_C);
+    public KeyBinding key1 = makeKeyBinding("IncreaseRange", Keyboard.KEY_RBRACKET);
+    public KeyBinding key2 = makeKeyBinding("DecreaseRange", Keyboard.KEY_LBRACKET);
+    public KeyBinding key3 = makeKeyBinding("SelectLinearMode", Keyboard.KEY_L);
+    public KeyBinding key4 = makeKeyBinding("SelectDiscriminationMode", Keyboard.KEY_M);
 
     public void registerKeys(){
         KHB.registerKeyBinding(key1);

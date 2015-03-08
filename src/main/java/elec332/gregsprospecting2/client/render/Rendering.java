@@ -23,7 +23,7 @@ public class Rendering {
 	}
 
   void bindTexture(String name) {
-	  ResourceLocation test = new ResourceLocation(GregsProspectingII.ModID + ":other/");
+	  ResourceLocation test = new ResourceLocation(GregsProspectingII.ModID + ":other/" + name);
 	  FMLClientHandler.instance().getClient().renderEngine.bindTexture(test);
 	}
 
