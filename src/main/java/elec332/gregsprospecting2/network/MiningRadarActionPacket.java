@@ -5,7 +5,6 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import elec332.core.network.AbstractPacket;
 import elec332.gregsprospecting2.items.ItemMiningRadar;
 import elec332.gregsprospecting2.lib.MiningRadarAction;
-import elec332.gregsprospecting2.main.GregsProspectingII;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

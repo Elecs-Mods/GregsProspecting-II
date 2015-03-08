@@ -4,7 +4,9 @@ import elec332.gregsprospecting2.lib.SignalMode;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
+/**
+ * Created by gcewing, updated by Elec332.
+ */
 public class RayTracer {
 
 	private int range; // Range of the scan in blocks
@@ -13,60 +15,7 @@ public class RayTracer {
 	private float density[][][]; // Hardness values of blocks within range
 	
 	private static float gain = 2.0F;
-	private static float reflectance[]; // block ID --> reflected signal
-	
-	static {
-		/*reflectance = new float[Blocks.blocksList.length];
-		World world = FMLClientHandler.instance().getClient().theWorld;
-		float default_reflectance = Blocks.stone.getBlockHardness(world, 0,0,0);
-		for (Block block : Blocks.blocksList) {
-			if (block != null) {
-				try {
-					reflectance[block.blockID] = block.getBlockHardness(world, 0,0,0);
-				}
-				catch (Exception e) {
-					reflectance[block.blockID] = default_reflectance;
-				}
-			}	
-		}
-			
-		reflectance[Block.waterStill.blockID] = 1.75F;
-		reflectance[Block.waterMoving.blockID] = 1.75F;
-		reflectance[Block.wood.blockID] = 0.75F;
 
-		reflectance[Block.planks.blockID] = 0.5F;
-		reflectance[Block.fence.blockID] = reflectance[Block.planks.blockID];
-		reflectance[Block.fenceGate.blockID] = reflectance[Block.planks.blockID];
-		reflectance[Block.stairsWoodOak.blockID] = reflectance[Block.planks.blockID];
-		reflectance[Block.doorWood.blockID] = reflectance[Block.planks.blockID];
-		reflectance[Block.trapdoor.blockID] = reflectance[Block.planks.blockID];
-		
-		reflectance[Block.cobblestone.blockID] = reflectance[Block.stone.blockID] - 0.2F;
-		reflectance[Block.cobblestoneMossy.blockID] = reflectance[Block.cobblestone.blockID];
-		reflectance[Block.stairsCobblestone.blockID] = reflectance[Block.cobblestone.blockID];
-		//reflectance[Block.stairSingle.blockID] = reflectance[Block.cobblestone.blockID];
-		//reflectance[Block.stairDouble.blockID] = reflectance[Block.cobblestone.blockID];
-		
-		reflectance[Block.brick.blockID] = 1.0F;
-		reflectance[Block.stairsBrick.blockID] = reflectance[Block.brick.blockID];
-		
-		reflectance[Block.lavaStill.blockID] = reflectance[Block.stone.blockID];
-		reflectance[Block.lavaMoving.blockID] = reflectance[Block.stone.blockID];
-		
-		reflectance[Block.oreCoal.blockID] = 2.5F;
-		reflectance[Block.oreIron.blockID] = 3.0F;
-		reflectance[Block.oreRedstone.blockID] = 3.2F;
-		reflectance[Block.oreGold.blockID] = 3.5F;
-		reflectance[Block.oreLapis.blockID] = 4.0F;
-		reflectance[Block.obsidian.blockID] = 4.25F;
-		reflectance[Block.oreDiamond.blockID] = 4.5F;
-		
-		reflectance[Block.blockIron.blockID] = 3.0F;
-		reflectance[Block.blockGold.blockID] = 3.5F;
-		reflectance[Block.blockLapis.blockID] = 4.0F;
-		reflectance[Block.blockDiamond.blockID] = 4.5F;*/
-	}
-	
 	public RayTracer(EntityPlayer player, int range, SignalMode signalMode) {
 		this.range = range;
 		this.signalMode = signalMode;
@@ -89,24 +38,7 @@ public class RayTracer {
 			}
 		}
 	}
-	
-	private void dump() {
-		System.out.printf("%3s", "");
-		for (int ix = 0; ix <= 2 * range; ix++)
-			System.out.printf(" %5d", ix);
-		System.out.printf("\n");
-		for (int iz = 0; iz <= 2 * range; iz++) {
-			System.out.printf("%3d", iz);
-			for (int ix = 0; ix <= 2 * range; ix++) {
-				float d = 0;
-				for (int iy = 0; iy <= 2 * range; iy++)
-					d += density[ix][iy][iz];
-				System.out.printf(" %5.1f", d);
-			}
-			System.out.printf("\n");
-		}
-	}
-	
+
 	public float trace(double vx, double vy, double vz) {
 		double ax = Math.abs(vx);
 		double ay = Math.abs(vy);
@@ -131,9 +63,7 @@ public class RayTracer {
 		}
 	}
 	
-	private float traceCase(double vx, double vy, double vz,
-			double dx, double dy, double dz)
-	{
+	private float traceCase(double vx, double vy, double vz, double dx, double dy, double dz) {
 		int r = range;
 		float signal = 0;
 		int count = 0;
@@ -171,5 +101,4 @@ public class RayTracer {
 			signal *= gain;
 		return signal;
 	}
-	
 }

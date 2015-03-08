@@ -11,6 +11,9 @@ import net.minecraft.world.World;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+/**
+ * Created by gcewing, updated by Elec332.
+ */
 public class ItemSlimophone extends Item {
 
 	private static int maxBatteryCharge = 100000;
@@ -41,41 +44,32 @@ public class ItemSlimophone extends Item {
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int slotNum, boolean inHand) {
-		//System.out.printf("ItemSlimophone.onUpdate: %d entities\n",
-		//	world.loadedEntityList.size());
 		if (world.isRemote) {
 			decayBars();
 			scanPerformed = false;
 		}
 		if (hasPower(stack)) {
 			if (!world.isRemote) {
-				//System.out.printf("ItemSlimophone: Updating battery\n");
 				updateBattery(stack);
 			}
 			if (world.isRemote) {
-				//System.out.printf("ItemSlimophone: Checking whether scan required\n");
 				if (!scanPerformed) {
-					//System.out.printf("ItemSlimophone: Performing scan\n");
-					performScan(stack, world, entity, slotNum, inHand);
+					performScan(world, entity);
 					scanPerformed = true;
 				}
 			}
 		}
 	}
 	
-	private void performScan(ItemStack stack, World world, Entity entity, int slotNum, boolean inHand) {
+	private void performScan(World world, Entity entity) {
 		double maxSignal = 0.0;
 		if (entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entity;
 			for (Object obj : world.loadedEntityList) {
-				//System.out.printf("ItemSlimophone.performScan: found %s\n", obj.getClass().getName());
 				if (obj instanceof EntitySlime) {
 					EntitySlime slime = (EntitySlime) obj;
-					//System.out.printf("   Found slime at (%.2f,%.2f,%.2f) isCollidedVertically = %s\n",
-					//	slime.posX, slime.posY, slime.posZ, slime.isCollidedVertically);
 					SlimeData data = getSlimeData(slime);
 					if (data.cooldownTimer > 0) {
-						//System.out.printf("   Still cooling down\n");
 						data.cooldownTimer -= 1;
 					}
 					else {
@@ -85,16 +79,11 @@ public class ItemSlimophone extends Item {
 							Vec3 slimePos = Vec3.createVectorHelper(slime.posX, slime.posY, slime.posZ);
 							Vec3 playerPos = Vec3.createVectorHelper(player.posX, player.posY, player.posZ);
 							double distFromPlayer = playerPos.distanceTo(slimePos);
-							//System.out.printf("   Distance from player = %s\n", distFromPlayer);
 							if (distFromPlayer <= maximumRange) {
 								Vec3 player2slime = slimePos.addVector(-playerPos.xCoord, -playerPos.yCoord, -playerPos.zCoord);
 								Vec3 look = player.getLookVec();
-								//System.out.printf("   To slime = %s\n", player2slime);
-								//System.out.printf("   Look = %s\n", look);
 								double gain = Math.max(player2slime.normalize().dotProduct(look), omnidirectionalGain);
 								double signal = gain * (1.0 - distFromPlayer / maximumRange);
-								//System.out.printf("   Signal = %s, gain = %s\n", signal, gain);
-								//world.playSoundAtEntity(player, pingSound, (float) signal, 1.0F);
 								world.playSound(player.posX, player.posY, player.posZ, pingSound, (float) signal, 1.0F, false);
 								maxSignal = Math.max(maxSignal, signal);
 							}
@@ -107,16 +96,8 @@ public class ItemSlimophone extends Item {
 			intensifyBars(maxSignal);
 	}
 	
-	private void dumpBarIntensities() {
-		System.out.printf("ItemSlimophone: Bar intensities =");
-		for (int i = 0; i < numBars; i++)
-			System.out.printf(" %.2f", barIntensities[i]);
-		System.out.printf("\n");
-	}
-	
 	private void intensifyBars(double signal) {
 		int n = (int) Math.round(signal * numBars);
-		//System.out.printf("ItemSlimophone: Intensifying %d bars\n", n);
 		for (int i = 0; i < n; i++)
 			barIntensities[i] = 1.0;
 	}
@@ -131,7 +112,9 @@ public class ItemSlimophone extends Item {
 	}
 	
 	private void updateBattery(ItemStack stack) {
-		stack.setItemDamage(stack.getItemDamage() + 1);
+		//stack.setItemDamage();
+		//stack.damageItem(1, null);
+		stack.getItem().setDamage(stack, stack.getItemDamage() + 1);
 	}
 	
 	private SlimeData getSlimeData(Entity slime) {
@@ -145,24 +128,18 @@ public class ItemSlimophone extends Item {
 	
 	@Override
 	public boolean isDamageable() {
-		// This needs to be true, otherwise the NBTTagCompound is not sent
-		// from the server to the client.
 		return true;
 	}
 	
 	@Override
 	public boolean isItemTool(ItemStack stack) {
-		// ...but we don't want it to look like a tool, otherwise it will
-		// be enchantable and maybe have other undesirable effects.
 		return false;
 	}
 	
 }
 
 class SlimeData {
-
 	public double posY;
 	public int cooldownTimer;
-	
 }
 

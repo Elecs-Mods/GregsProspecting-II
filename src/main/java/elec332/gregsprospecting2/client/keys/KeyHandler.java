@@ -7,7 +7,6 @@ import elec332.gregsprospecting2.network.MiningRadarActionPacket;
 import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Keyboard;
 
-//
 /**
  * Created by Elec332 on 6-3-2015.
  */

@@ -1,6 +1,8 @@
 package elec332.gregsprospecting2.helper;
 
-//Created by gcewing
+/**
+ * Created by gcewing.
+ */
 public class CoordRotator {
 
 	public double sinP, cosP, sinY, cosY;
@@ -22,5 +24,4 @@ public class CoordRotator {
 		x = sinY * zp + cosY * xp;
 		y = yp;
 	}
-
 }

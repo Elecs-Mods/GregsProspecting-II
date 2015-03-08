@@ -10,6 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+/**
+ * Created by gcewing, updated by Elec332.
+ */
 public class ItemMiningRadar extends Item {
 
 	public static float hitBreakChance = 0.05F;
@@ -77,7 +80,6 @@ public class ItemMiningRadar extends Item {
 	}
 	
 	public void performAction(ItemStack stack, MiningRadarAction action) {
-		//System.out.printf("ItemMiningRadar.performAction: %s\n", action);
 		switch (action) {
 			case IncreaseRange:
 				increaseRange(stack);
@@ -116,28 +118,22 @@ public class ItemMiningRadar extends Item {
 		World world = player.worldObj;
 		if (world.rand.nextFloat() < hitBreakChance) {
 			world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.glass", 2.0F, world.rand.nextFloat() * 0.1F + 0.9F);
-			stack = null;
-			stack = new ItemStack(ItemRegister.brokenMiningRadar);
+			//TODO: break item
 		}
 		return false;
 	}
 	
 	@Override
 	public boolean isDamageable() {
-		// This needs to be true, otherwise the NBTTagCompound is not sent
-		// from the server to the client.
 		return true;
 	}
 	
 	@Override
 	public boolean isItemTool(ItemStack stack) {
-		// ...but we don't want it to look like a tool, otherwise it will
-		// be enchantable and maybe have other undesirable effects.
 		return false;
 	}
 	
 	public boolean isColor(ItemStack stack) {
 		return stack.getItem() == ItemRegister.colorMiningRadar;
 	}
-
 }

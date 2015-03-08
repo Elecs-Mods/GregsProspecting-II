@@ -15,6 +15,9 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
+/**
+ * Created by gcewing.
+ */
 public class RenderMiningRadar extends Rendering implements IItemRenderer {
 
 	static String mono_hud = "mining_radar_hud.png";
@@ -36,7 +39,6 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 	
 	@Override
 	public boolean handleRenderType(ItemStack stack, ItemRenderType type) {
-		//System.out.printf("RenderMiningRadar.handleRenderType: %s?\n", type);
 		switch (type) {
 			case INVENTORY:
 			case EQUIPPED:
@@ -55,7 +57,6 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 	
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) {
-		//System.out.printf("RenderMiningRadar.renderItem: type %s\n", type);
 		switch (type) {
 			case INVENTORY:
 				renderInInventory(stack, data);
@@ -102,7 +103,6 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 	}
 
 	void renderEquipped(ItemStack stack, Object[] data) {
-		//System.out.printf("RenderMiningRadar.renderEquipped\n");
 		Entity entity = (Entity) data[1];
 		if (entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entity;
@@ -133,16 +133,12 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 		GL11.glScaled(1/hudWidth, 1/hudHeight, 1);
 		drawBackground(stack);
 		if (isBroken(stack)) {
-			//System.out.printf("RenderMiningRadar: is broken\n");
 			drawCracks();
 		}
 		else if (hasPower(stack)) {
-			//System.out.printf("RenderMiningRadar: has power\n");
 			drawDisplay(player, stack);
 			drawIndicators(stack);
 		}
-		//else
-			//System.out.printf("RenderMiningRadar: out of power\n");
 		restoreAttributes();
 	}
 	
@@ -168,26 +164,18 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 	}
 	
 	void drawDisplay(EntityPlayer player, ItemStack stack) {
-		//System.out.printf("RenderMiningRadar: Performing scan\n");
 		ItemMiningRadar mr;
 		if(stack.getItem() instanceof ItemMiningRadar)
-			mr = (ItemMiningRadar)stack.getItem(); //GregsProspecting.miningRadar;
+			mr = (ItemMiningRadar)stack.getItem();
 		else
 			return;
 		boolean isColor = mr.isColor(stack);
 		double pitch = -player.rotationPitch * Math.PI / 180;
 		double yaw = (180 - player.rotationYaw) * Math.PI / 180;
-		
-		//System.out.printf("pitch = %f yaw = %f\n", pitch, yaw);
-		
 		CoordRotator rot = new CoordRotator(pitch, yaw);
 		double pixelWidth = screenWidth / hResolution;
 		double pixelHeight = screenHeight / vResolution;
-		
 		RayTracer rt = new RayTracer(player, mr.getRange(stack), mr.getSignalMode(stack));
-		//System.out.printf("Neighbourhood densities:\n");
-		//rt.dump();
-		
 		Tessellator tess = new Tessellator();
 		tess.setTranslation(screenLeft, screenBottom, 0);
 		tess.startDrawingQuads();
@@ -202,7 +190,6 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 				rot.rotate(xs, ys, zs);
 				
 				float signal = rt.trace(rot.x, rot.y, rot.z);
-				//System.out.printf("%d, %d --> %s\n", i, j, signal);
 				float y = signal / maxSignal;
 				if (y > 1)
 					y = 1;
@@ -268,25 +255,16 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 	}
 	
 	float batteryCondition(ItemStack stack) {
-		// Fraction of charge remaining in battery
-		//float charge = ItemMiningRadar.getBatteryCharge(stack);
-		//float maxCharge = ItemMiningRadar.maxBatteryCharge;
-		if(stack != null && stack.getItem() instanceof ItemMiningRadar)
-		{
+		if(stack != null && stack.getItem() instanceof ItemMiningRadar) {
 			float charge = ((ItemMiningRadar)stack.getItem()).getBatteryCharge(stack);
 			float maxCharge = ((ItemMiningRadar)stack.getItem()).maxBatteryCharge;
 			return charge / maxCharge;
 		}
-//		System.out.printf("batteryCondition: charge = %f, maxCharge = %f\n",
-//			charge, maxCharge);
 		return 0;
 	}
 	
 	boolean hasPower(ItemStack stack) {
-		//int charge = ItemMiningRadar.getBatteryCharge(stack);
-//		System.out.printf("RenderMiningRadar.hasPower: charge = %d\n", charge);
-		if(stack != null && stack.getItem() instanceof ItemMiningRadar)
-		{
+		if(stack != null && stack.getItem() instanceof ItemMiningRadar) {
 			int charge = ((ItemMiningRadar)stack.getItem()).getBatteryCharge(stack);
 			return charge > 0;
 		}
@@ -300,5 +278,4 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 	void glColor3fv(float[] c) {
 		GL11.glColor3f(c[0], c[1], c[2]);
 	}
-
 }

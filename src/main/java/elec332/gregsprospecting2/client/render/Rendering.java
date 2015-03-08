@@ -7,22 +7,19 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-//import net.minecraft.client.renderer.RenderEngine;
-
+/**
+ * Created by gcewing.
+ */
 public class Rendering {
 
 	Minecraft mc;
-	//BaseModClient client;
 	double boundTextureWidth, boundTextureHeight;
 	
 	public Rendering() {
 		mc = Minecraft.getMinecraft();
-		//System.out.printf("Rendering: GregsProspecting.instance = %s, client = %s\n",
-		//	GregsProspecting.instance, GregsProspecting.instance.client);
-		//client = GregsProspecting.instance.client;
 	}
 
-  void bindTexture(String name) {
+  	void bindTexture(String name) {
 	  ResourceLocation test = new ResourceLocation(GregsProspectingII.ModID + ":other/" + name);
 	  FMLClientHandler.instance().getClient().renderEngine.bindTexture(test);
 	}
@@ -41,8 +38,7 @@ public class Rendering {
 		drawRect(x, y, w, h);
 	}
 
-	void drawTexRect(double x, double y, double w, double h,
-			double tx, double ty, double tw, double th) {
+	void drawTexRect(double x, double y, double w, double h, double tx, double ty, double tw, double th) {
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2d(tx, 1 - ty);
@@ -57,15 +53,13 @@ public class Rendering {
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 	}
 
-  void bindTextureSet(String name, double w, double h) {
+  	void bindTextureSet(String name, double w, double h) {
 		bindTexture(name);
 		boundTextureWidth = w;
 		boundTextureHeight = h;
 	}
 
-	void drawTexSubRect(double x, double y, double w, double h,
-			double tx, double ty)
-	{
+	void drawTexSubRect(double x, double y, double w, double h,	double tx, double ty) {
 		double tw = boundTextureWidth;
 		double th = boundTextureHeight;
 		double u0 = tx / tw;
@@ -90,5 +84,4 @@ public class Rendering {
 		tess.addVertex(x+w, y+h, 0);
 		tess.addVertex(x, y+h, 0);
 	}
-	
 }

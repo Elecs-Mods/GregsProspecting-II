@@ -49,9 +49,10 @@ public class GregsProspectingII extends ModBase {
         //setting up mod stuff
 
         loadConfiguration();
-        MCModInfo.CreateMCModInfo(event, "Created by Elec332, original by Greg?",
-                "mod description",
-                "website link", "logo",
+        MCModInfo.CreateMCModInfo(event, "Created by Elec332, original by gcewing." +
+                        " Rendering and some internal logic also by gcewing",
+                "This mod allows the user to find ores and slime-chunks easier",
+                "Loading URL...", "logo",
                 new String[]{"Elec332"});
         notifyEvent(event);
     }

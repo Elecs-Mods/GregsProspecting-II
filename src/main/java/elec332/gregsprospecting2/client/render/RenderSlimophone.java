@@ -7,6 +7,9 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
+/**
+ * Created by gcewing.
+ */
 public class RenderSlimophone extends Rendering implements IItemRenderer {
 
 	public boolean handleRenderType(ItemStack stack, ItemRenderType type) {
@@ -14,13 +17,12 @@ public class RenderSlimophone extends Rendering implements IItemRenderer {
 	}
 	
 	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) {
-		//System.out.printf("RenderSlimophone.renderItem\n");
 		switch (type) {
 			case INVENTORY:
-				renderInInventory(stack, data);
+				renderInInventory(stack);
 				break;
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 
@@ -28,7 +30,7 @@ public class RenderSlimophone extends Rendering implements IItemRenderer {
 		return false;
 	}
 	
-	void renderInInventory(ItemStack stack, Object[] data) {
+	void renderInInventory(ItemStack stack) {
 		RenderItem ri = new RenderItem();
 		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 		GL11.glDisable(GL11.GL_LIGHTING);
@@ -47,5 +49,4 @@ public class RenderSlimophone extends Rendering implements IItemRenderer {
 			drawRect(2, 13 - 2 * i, 3, -1);
 		}
 	}
-	
 }
