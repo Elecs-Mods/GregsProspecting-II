@@ -1,8 +1,10 @@
 package elec332.gregsprospecting2.helper;
 
+import elec332.gregsprospecting2.items.ItemMiningRadar;
 import elec332.gregsprospecting2.lib.SignalMode;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 /**
  * Created by gcewing, updated by Elec332.
@@ -16,9 +18,9 @@ public class RayTracer {
 	
 	private static float gain = 2.0F;
 
-	public RayTracer(EntityPlayer player, int range, SignalMode signalMode) {
+	public RayTracer(EntityPlayer player, int range, ItemMiningRadar itemMiningRadar, ItemStack theStack) {
 		this.range = range;
-		this.signalMode = signalMode;
+		this.signalMode = itemMiningRadar.getSignalMode(theStack);
 		World world = player.worldObj;
 		double px = player.posX, py = player.posY, pz = player.posZ;
 		int ipx = (int) Math.floor(px);
@@ -32,8 +34,8 @@ public class RayTracer {
 		for (int ix = - range; ix <= range; ix++) {
 			for (int iy = - range; iy <= range; iy++) {
 				for (int iz = - range; iz <= range; iz++) {
-					Block blockId = world.getBlock(ipx + ix, ipy + iy, ipz + iz);
-					density[range + ix][range + iy][range + iz] = blockId.getBlockHardness(world, ipx + ix, ipy + iy, ipz + iz);
+					Block block = world.getBlock(ipx + ix, ipy + iy, ipz + iz);
+					density[range + ix][range + iy][range + iz] = block.getBlockHardness(world, ipx + ix, ipy + iy, ipz + iz);
 				}
 			}
 		}

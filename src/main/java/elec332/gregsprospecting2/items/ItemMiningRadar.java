@@ -1,8 +1,10 @@
 package elec332.gregsprospecting2.items;
 
+import elec332.core.config.ConfigCore;
 import elec332.gregsprospecting2.init.ItemRegister;
 import elec332.gregsprospecting2.lib.MiningRadarAction;
 import elec332.gregsprospecting2.lib.SignalMode;
+import elec332.gregsprospecting2.main.GregsProspectingII;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,7 +19,8 @@ public class ItemMiningRadar extends Item {
 
 	public static float hitBreakChance = 0.05F;
 	public static int maxBatteryCharge = 18000;
-	
+	public static int maxRange = GregsProspectingII.MRMI;
+
 	public ItemMiningRadar() {
 		super();
 		setMaxStackSize(1);
@@ -98,7 +101,7 @@ public class ItemMiningRadar extends Item {
 	
 	public void increaseRange(ItemStack stack) {
 		int range = getRange(stack);
-		if (range < 15)
+		if (range < maxRange)
 			setRange(stack, range + 5);
 	}
 	

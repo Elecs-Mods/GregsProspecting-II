@@ -175,7 +175,7 @@ public class RenderMiningRadar extends Rendering implements IItemRenderer {
 		CoordRotator rot = new CoordRotator(pitch, yaw);
 		double pixelWidth = screenWidth / hResolution;
 		double pixelHeight = screenHeight / vResolution;
-		RayTracer rt = new RayTracer(player, mr.getRange(stack), mr.getSignalMode(stack));
+		RayTracer rt = new RayTracer(player, mr.getRange(stack), mr, stack);
 		Tessellator tess = new Tessellator();
 		tess.setTranslation(screenLeft, screenBottom, 0);
 		tess.startDrawingQuads();

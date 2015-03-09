@@ -6,6 +6,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import elec332.core.config.ConfigCore;
 import elec332.core.helper.FileHelper;
 import elec332.core.helper.MCModInfo;
 import elec332.core.helper.ModInfoHelper;
@@ -38,12 +39,16 @@ public class GregsProspectingII extends ModBase {
     public static GregsProspectingII instance;
     public static NetworkHandler networkHandler;
 
+    public static int MRMI = 15;
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         this.cfg = FileHelper.getConfigFileElec(event);
         networkHandler = new NetworkHandler(ModInfoHelper.getModID(event));
         networkHandler.registerServerPacket(MiningRadarActionPacket.class);
         loadConfiguration();
+        MRMI = config.getInt("MaxRange", ConfigCore.CATEGORY_GENERAL, 15, 5, 50, "Sets the max. range for the MiningRadar");
+
         ItemRegister.instance.preInit(event);
         BlockRegister.instance.preInit(event);
         //setting up mod stuff
