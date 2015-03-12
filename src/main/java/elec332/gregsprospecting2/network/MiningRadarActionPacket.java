@@ -35,9 +35,8 @@ public class MiningRadarActionPacket extends AbstractPacket {
     public IMessage onMessage(AbstractPacket message, MessageContext ctx) {
         if (message.networkPackageObject != null) {
             ItemStack stack = ctx.getServerHandler().playerEntity.getCurrentEquippedItem();
-            Item item = stack.getItem();
-            if (item != null && item instanceof ItemMiningRadar)
-                ((ItemMiningRadar) item).performAction(stack, (MiningRadarAction) message.networkPackageObject);
+            if (stack != null && stack.getItem() != null && stack.getItem() instanceof ItemMiningRadar)
+                ((ItemMiningRadar) stack.getItem()).performAction(stack, (MiningRadarAction) message.networkPackageObject);
         }
         return null;
     }
