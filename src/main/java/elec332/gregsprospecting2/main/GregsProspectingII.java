@@ -11,7 +11,7 @@ import elec332.core.helper.FileHelper;
 import elec332.core.helper.MCModInfo;
 import elec332.core.helper.ModInfoHelper;
 import elec332.core.modBaseUtils.ModBase;
-import elec332.core.modBaseUtils.modInfo;
+import elec332.core.modBaseUtils.ModInfo;
 import elec332.core.network.NetworkHandler;
 import elec332.gregsprospecting2.init.BlockRegister;
 import elec332.gregsprospecting2.init.CommandRegister;
@@ -25,8 +25,8 @@ import java.io.File;
 /**
  * Created by Elec332 on 24-2-2015.
  */
-@Mod(modid = GregsProspectingII.ModID, name = GregsProspectingII.ModName, dependencies = modInfo.DEPENDENCIES+"@[#ELECCORE_VER#,)",
-        acceptedMinecraftVersions = modInfo.ACCEPTEDMCVERSIONS, useMetadata = true, canBeDeactivated = true)
+@Mod(modid = GregsProspectingII.ModID, name = GregsProspectingII.ModName, dependencies = ModInfo.DEPENDENCIES+"@[#ELECCORE_VER#,)",
+        acceptedMinecraftVersions = ModInfo.ACCEPTEDMCVERSIONS, useMetadata = true, canBeDeactivated = true)
 public class GregsProspectingII extends ModBase {
 
     public static final String ModName = "Greg's Prospecting II"; //Human readable name
