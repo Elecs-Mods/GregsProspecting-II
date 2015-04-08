@@ -5,8 +5,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import elec332.core.baseclasses.item.BaseItem;
 import elec332.core.helper.ModInfoHelper;
-import elec332.core.util.items.baseItem;
 import elec332.gregsprospecting2.items.ItemMiningRadar;
 import elec332.gregsprospecting2.items.ItemSlimophone;
 import elec332.gregsprospecting2.main.GregsProspectingII;
@@ -65,7 +65,7 @@ public class ItemRegister {
     }
 
     Item createItem(String s, String toLocalise){
-        return new baseItem(s, Tab, ModID);
+        return new BaseItem(s, Tab, ModID);
     }
 
     ItemMiningRadar itemMiningRadar(String s, Class clazz, String tl){
